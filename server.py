@@ -7,6 +7,10 @@ import cv2
 # Initialize the Flask application
 app = Flask(__name__)
 
+@app.route('/download')
+def download():
+    filename = request.args.get('filename')
+    return send_from_directory(RESULTS_FOLDER, filename)
 
 # route http posts to this method
 @app.route('/api/test', methods=['POST'])
